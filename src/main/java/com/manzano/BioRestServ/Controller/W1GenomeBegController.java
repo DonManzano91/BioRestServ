@@ -29,4 +29,18 @@ public class W1GenomeBegController {
         List<String> kmersList = w1GenomeBegService.frequentWordsFinder(genString, kmerLong);
         return new ResponseEntity<>(kmersList, HttpStatus.OK);
     }
+
+    @PostMapping("/reversePatterns")
+    public ResponseEntity<String> reversePattern(String gen){
+        String reverseGen = w1GenomeBegService.reversePattern(gen);
+        return new ResponseEntity<>(reverseGen, HttpStatus.OK);
+    }
+
+    @PostMapping("listOfPositions")
+    public ResponseEntity<List<Integer>> listOfPositions(String pattern, String gen){
+        List<Integer> listOfPositions = w1GenomeBegService.listOfPositions(pattern, gen);
+        return new ResponseEntity<>(listOfPositions, HttpStatus.OK);
+    }
+
+
 }

@@ -1,7 +1,9 @@
 package com.manzano.BioRestServ.Services;
 
+import com.manzano.BioRestServ.Util.Utility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -20,6 +22,9 @@ public class W1GenomeBegService {
      * */
 
     private static final Logger log = LoggerFactory.getLogger(W1GenomeBegService.class);
+
+    @Autowired //TODO: Review the dependency injection and why need to be explicit instanciate
+    private Utility utility = new Utility();
 
     public Integer countPatters(String genString, String pattern) {
         log.info("Gitting into countPatterns()");
@@ -43,19 +48,8 @@ public class W1GenomeBegService {
     public List<String> frequentWordsFinder(String genString, Integer kmerLong) {
         log.info("into frequentWordsFinder()");
         List<String> mostFrequentKmers = new ArrayList<>();
-        Map<String, Integer> frequenKmersMap = new HashMap<>();
-        StringBuilder genBuilder = new StringBuilder(genString);
+        Map<String, Integer> frequenKmersMap = utility.frequencyMap(genString, kmerLong);
         try {
-            for (int i = 0; i<=genString.length()-kmerLong; i++){
-                String key = genBuilder.substring(i, i+kmerLong);
-                if (!frequenKmersMap.containsKey(key)){
-                    frequenKmersMap.put(key, 1);
-                } else {
-                    int value = frequenKmersMap.get(key);
-                    frequenKmersMap.put(key, value+1);
-                }
-
-            }
             Map.Entry<String, Integer> maxEntry = Collections
                     .max(frequenKmersMap.entrySet(), Comparator.comparing(Map.Entry::getValue));
             int maxValue = maxEntry.getValue();
@@ -70,5 +64,33 @@ public class W1GenomeBegService {
         }
         log.info("exiting frequentWordsFinder()");
         return mostFrequentKmers;
+    }
+
+    public String reversePattern(String gen){
+        log.info("into reversePattern()");
+        Map<String, String> genMap = new HashMap<>();
+        genMap.put("A", "T");
+        genMap.put("T", "A");
+        genMap.put("C", "G");
+        genMap.put("G", "C");
+        StringBuilder reversePattern = new StringBuilder();
+        StringBuilder patternBuilder = new StringBuilder(gen).reverse();
+        for (int i =0; i<=patternBuilder.length()-1; i++){
+            reversePattern.append(genMap.get(patternBuilder.substring(i, i+1)));
+        }
+        log.info("exiting reversePattern()");
+        return reversePattern.toString();
+    }
+
+    public List<Integer> listOfPositions(String pattern, String gen) {
+        log.info("into listOfPositions()");
+        List<Integer> listOfPositions = new ArrayList<>();
+        for (int i = 0; i<= gen.length()-pattern.length(); i++){
+            if (gen.substring(i,i+pattern.length()).equals(pattern)){
+                listOfPositions.add(i);
+            }
+        }
+        log.info("exiting listOfPositions()" + listOfPositions);
+        return listOfPositions;
     }
 }

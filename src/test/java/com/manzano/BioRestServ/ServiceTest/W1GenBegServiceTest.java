@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class W1GenBegServiceTest {
+
+
     @Test
     public void patterCountSucceed(){
         String genTest = "GCGCG";
@@ -27,5 +29,29 @@ public class W1GenBegServiceTest {
         Assertions.assertEquals(methodList, successList);
     }
 
+    @Test
+    public void reverseComplementSuccess(){
+        String dnaString = "AAAACCCGGT";
+        String reverseDnaStringTest = "ACCGGGTTTT";
+        W1GenomeBegService w1GenomeBegService = new W1GenomeBegService();
+        String reverseStringGen = w1GenomeBegService.reversePattern(dnaString);
+        Assertions.assertEquals(reverseDnaStringTest, reverseStringGen);
+    }
+
+    @Test
+    public void patternPositionInGenSuccess(){
+        String pattern = "ATAT";
+        String gen = "GATATATGCATATACTT";
+        W1GenomeBegService w1GenomeBegService = new W1GenomeBegService();
+        List<Integer> listOfPositions = w1GenomeBegService.listOfPositions(pattern, gen);
+        List<Integer> expectedListOfPositions = Arrays.asList(1,3,9);
+        Assertions.assertEquals(expectedListOfPositions, listOfPositions);
+    }
+
+    @Test//TODO: Next method to solve: https://stepik.org/lesson/4/step/3?unit=8233
+    public void clumpFindingSuccess(){
+        W1GenomeBegService w1GenomeBegService = new W1GenomeBegService();
+
+    }
 
 }
