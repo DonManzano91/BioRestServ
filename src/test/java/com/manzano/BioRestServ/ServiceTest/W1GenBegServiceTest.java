@@ -5,7 +5,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class W1GenBegServiceTest {
 
@@ -50,8 +52,14 @@ public class W1GenBegServiceTest {
 
     @Test//TODO: Next method to solve: https://stepik.org/lesson/4/step/3?unit=8233
     public void clumpFindingSuccess(){
+        String gen = "CGGACTCGACAGATGTGAAGAACGACAATGTGAAGACTCGACACGACAGAGTGAAGAGAAGAGGAAACATTGTAA";
+        int kmerLenght = 5;
+        int LongOfWindow = 50;
+        int timesKmerRepeats = 4;
         W1GenomeBegService w1GenomeBegService = new W1GenomeBegService();
-
+        Set<String> resolvedOutput = w1GenomeBegService.clumpFinding(gen, kmerLenght, LongOfWindow, timesKmerRepeats);
+        Set<String> expectedOutput =new HashSet<>(Arrays.asList("GAAGA", "CGACA"));
+        Assertions.assertEquals(expectedOutput, resolvedOutput);
     }
 
 }
