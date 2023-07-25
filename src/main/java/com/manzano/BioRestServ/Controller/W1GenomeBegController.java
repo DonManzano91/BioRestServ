@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
+@RestController //TODO: Create controller versions that can allow consume of txt files
 @RequestMapping("/w1GenomeBegin")
 public class W1GenomeBegController {
 
