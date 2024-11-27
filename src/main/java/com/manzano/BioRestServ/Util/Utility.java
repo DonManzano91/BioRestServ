@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -49,13 +50,23 @@ public class Utility {
     public List<Integer> turnCsvTO_List(String CsvPath) throws IOException, CsvException {
         List<Integer> listIntegers = new ArrayList<>();
         try(CSVReader csvReader = new CSVReader(new FileReader(CsvPath))){
-            List<String[]> rows = csvReader.readAll();
-            for(String[] row:rows){
+            for(String[] row: csvReader.readAll()){
                 for(String value: row){
                     listIntegers.add(Integer.parseInt(value.trim()));
                 }
             }
         }
         return listIntegers;
+    }
+
+    /**
+     * Metodo para obtener la probabilidaddes acorde este escenario:
+     * https://cogniterra.org/lesson/29861/step/3?unit=21958
+     * TODO: Terminar implementacion, es un opcional teorico, reto para python
+     * */
+    public BigDecimal calcProbability(int n, int a, int patron, int t){
+        log.info("into calcProbability");
+        BigDecimal probabilty = new BigDecimal(1);
+        return probabilty;
     }
 }
