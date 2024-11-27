@@ -74,12 +74,4 @@ public class W2GenBegServiceTest {
         Assertions.assertEquals(expectedListOfPositions, actualListOfPositions);
     }
 
-    @Test
-    public void approximatePatternCountSuccesTest(){
-        String pattern = "GAGG";
-        String gen = "TTTAGAGCCTTCAGAGG";
-        Integer maxAlloedHD = 2;
-        
-    }
-
 }

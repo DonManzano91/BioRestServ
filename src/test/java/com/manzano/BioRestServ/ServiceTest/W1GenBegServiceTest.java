@@ -4,6 +4,9 @@ import com.manzano.BioRestServ.Services.W1GenomeBegService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -40,12 +43,24 @@ public class W1GenBegServiceTest {
         Assertions.assertEquals(reverseDnaStringTest, reverseStringGen);
     }
 
+    //Link in cogniterra: https://cogniterra.org/lesson/29851/step/5?unit=21948
     @Test
     public void patternPositionInGenSuccess(){
         String pattern = "ATAT";
         String gen = "GATATATGCATATACTT";
         W1GenomeBegService w1GenomeBegService = new W1GenomeBegService();
         List<Integer> listOfPositions = w1GenomeBegService.listOfPositions(pattern, gen);
+        List<Integer> expectedListOfPositions = Arrays.asList(1,3,9);
+        Assertions.assertEquals(expectedListOfPositions, listOfPositions);
+    }
+
+    @Test
+    public void patternPositionInVibrioCholerae() throws IOException {
+        String pattern = "CTTGATCAT";
+        Path path = Path.of("src/main/resources/static/Vibrio_cholerae.txt");
+        String genoma = Files.readString(path);
+        W1GenomeBegService w1GenomeBegService = new W1GenomeBegService();
+        List<Integer> listOfPositions = w1GenomeBegService.listOfPositions(pattern, genoma);
         List<Integer> expectedListOfPositions = Arrays.asList(1,3,9);
         Assertions.assertEquals(expectedListOfPositions, listOfPositions);
     }
