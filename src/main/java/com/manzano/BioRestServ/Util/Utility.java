@@ -59,14 +59,4 @@ public class Utility {
         return listIntegers;
     }
 
-    /**
-     * Metodo para obtener la probabilidaddes acorde este escenario:
-     * https://cogniterra.org/lesson/29861/step/3?unit=21958
-     * TODO: Terminar implementacion, es un opcional teorico, reto para python
-     * */
-    public BigDecimal calcProbability(int n, int a, int patron, int t){
-        log.info("into calcProbability");
-        BigDecimal probabilty = new BigDecimal(1);
-        return probabilty;
-    }
 }
