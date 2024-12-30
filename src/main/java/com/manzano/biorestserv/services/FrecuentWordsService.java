@@ -1,9 +1,10 @@
-package com.manzano.BioRestServ.Services;
+package com.manzano.biorestserv.services;
 
-import com.manzano.BioRestServ.Util.Utility;
+import com.manzano.biorestserv.util.Utility;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -15,16 +16,14 @@ import java.util.*;
  * */
 
 @Service
-public class W1GenomeBegService {
+@AllArgsConstructor
+@Slf4j
+public class FrecuentWordsService {
     /**
      * Certanly can be an easy way to do it with Java capabilities
      * but, gonna implement the logic decribed in the course for practice
      * */
-
-    private static final Logger log = LoggerFactory.getLogger(W1GenomeBegService.class);
-
-    @Autowired //TODO: Review the dependency injection and why need to be explicit instantiate
-    private Utility utility = new Utility();
+    private final Utility utility;
 
     /**
      * Given a pattern provide, it counts how many times it repeats into the gen
@@ -119,28 +118,5 @@ public class W1GenomeBegService {
         return listOfPositions;
     }
 
-    /**
-     * This is a hard one, this would look for different substrings of lenght L from the
-     * gen string provided, getting all the kmers of lenght k that repet more thant t times
-     * @param gen: string that will be annalized
-     * @param kmerLength : size of the kmer that would be looked for
-     * @param l: longitud of the substring window where the kmers will be search for
-     * @param t: times that the kmer is spected to appear inside every window.
-     * */
-    public Set<String> clumpFinding(String gen, int kmerLength, int l, int t) {
-        Set<String> pattersList = new HashSet<>();
-        String genWindow="";
-        Map<String, Integer> frequenKmersMap;
-        for (int i=0; i<=gen.length()-l; i++){
-            genWindow = gen.substring(i, i+l);
-            frequenKmersMap = utility.frequencyMap(genWindow, kmerLength);
-            frequenKmersMap.forEach((k,v) -> {
-                if (v>=t){
-                    pattersList.add(k);
-                }
-            });
-        }
-        log.info("patternList " + pattersList);
-        return pattersList;
-    }
+
 }

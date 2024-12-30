@@ -1,4 +1,4 @@
-package com.manzano.BioRestServ.Util;
+package com.manzano.biorestserv.util;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

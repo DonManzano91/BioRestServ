@@ -1,4 +1,4 @@
-package com.manzano.BioRestServ;
+package com.manzano.biorestserv;
 
 import org.junit.jupiter.api.Test;
 

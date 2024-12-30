@@ -1,19 +1,18 @@
-package com.manzano.BioRestServ.Services;
+package com.manzano.biorestserv.services;
 
-import com.manzano.BioRestServ.Util.Utility;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-
+import com.manzano.biorestserv.util.Utility;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-public class W2GenomaBegService {
+@Slf4j
+@Service
+@AllArgsConstructor
+public class HammingDistanceService {
 
-    private static final Logger log = LoggerFactory.getLogger(W2GenomaBegService.class);
-
-    @Autowired
-    private Utility utility = new Utility();
+    private final Utility utility;
 
     public List<Integer> skewMinimumList(String gen) {
         log.info("into skewMinimumList()");
@@ -47,6 +46,7 @@ public class W2GenomaBegService {
 
     public Integer calculateHammingDistance(String kmer1, String kmer2) throws Exception{
         Integer hammingDistance = 0;
+
         if (kmer1.length()!=kmer2.length()){
             throw new Exception();
         }
@@ -61,14 +61,12 @@ public class W2GenomaBegService {
     public List<Integer> getPosHammingDistanceEqualOrMinorValue(String pattern, String gen, int maxHdAllowed){
         List<Integer> listOfPositions = new ArrayList<>();
         for (int i = 0; i <=gen.length()-pattern.length() ; i++) {
-           // System.out.println("i "+ i + " pattern " + pattern + " subGen " + gen.substring(i,i+pattern.length()));
+            // System.out.println("i "+ i + " pattern " + pattern + " subGen " + gen.substring(i,i+pattern.length()));
             if (utility.isValidHM(pattern, gen.substring(i,i+pattern.length()), maxHdAllowed)){
                 listOfPositions.add(i);
             }
         }
-        System.out.println(listOfPositions);
+        log.info(listOfPositions.toString());
         return listOfPositions;
     }
-
-
 }

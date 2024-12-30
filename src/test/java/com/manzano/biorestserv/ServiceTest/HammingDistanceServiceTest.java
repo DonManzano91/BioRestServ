@@ -1,7 +1,7 @@
-package com.manzano.BioRestServ.ServiceTest;
+package com.manzano.biorestserv.ServiceTest;
 
-import com.manzano.BioRestServ.Services.W2GenomaBegService;
-import com.manzano.BioRestServ.Util.Utility;
+import com.manzano.biorestserv.services.HammingDistanceService;
+import com.manzano.biorestserv.util.Utility;
 import com.opencsv.exceptions.CsvException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,21 +13,22 @@ import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
 
-public class W2GenBegServiceTest {
+public class HammingDistanceServiceTest {
 
-    private W2GenomaBegService w2GenomaBegService;
+    private HammingDistanceService hammingDistanceService;
     private Utility utility;
+
     @BeforeEach
     public void setUp(){
-        w2GenomaBegService = new W2GenomaBegService();
         utility = new Utility();
+        hammingDistanceService = new HammingDistanceService(utility);
     }
 
     @Test
     public void skewMinimumSucced(){
         String gen = "TAAAGACTGCCGAGAGGCCAACACGAGTGCTAGAACGAGGGGCGTAAACGCGGGTCCGAT";
         List<Integer> expectedlistOfMimimuSkewValues = Arrays.asList(11, 24);
-        List<Integer> actualListOfMinimumSkewCalues = w2GenomaBegService.skewMinimumList(gen);
+        List<Integer> actualListOfMinimumSkewCalues = hammingDistanceService.skewMinimumList(gen);
         Assertions.assertEquals(expectedlistOfMimimuSkewValues, actualListOfMinimumSkewCalues);
     }
 
@@ -36,7 +37,7 @@ public class W2GenBegServiceTest {
         String kmer1 = "GGGCCGTTGGT";
         String kmer2 = "GGACCGTTGAC";
         Integer expectedDistance = 3;
-        Integer actualDistance = w2GenomaBegService.calculateHammingDistance(kmer1, kmer2);
+        Integer actualDistance = hammingDistanceService.calculateHammingDistance(kmer1, kmer2);
         Assertions.assertEquals(expectedDistance, actualDistance);
     }
     @Test
@@ -46,7 +47,7 @@ public class W2GenBegServiceTest {
         String kmer1 = Files.readString(path1);
         String kmer2 = Files.readString(path2);
         Integer expectedDistance = 754; //Validated into the stepik challange for such dataset
-        Integer actualDistance = w2GenomaBegService.calculateHammingDistance(kmer1, kmer2);
+        Integer actualDistance = hammingDistanceService.calculateHammingDistance(kmer1, kmer2);
         Assertions.assertEquals(expectedDistance, actualDistance);
     }
 
@@ -56,7 +57,7 @@ public class W2GenBegServiceTest {
         String gen = "CGCCCGAATCCAGAACGCATTCCCATATTTCGGGACCACTGGCCTCCACGGTACGGACGTCAATCAAAT";
         int maxAlloedHd = 3;
         List<Integer> expectedListOfPositions = Arrays.asList(6, 7, 26, 27);
-        List<Integer> actualListOfPositions = w2GenomaBegService
+        List<Integer> actualListOfPositions = hammingDistanceService
                 .getPosHammingDistanceEqualOrMinorValue(pattern, gen, maxAlloedHd);
         Assertions.assertEquals(expectedListOfPositions, actualListOfPositions);
     }
@@ -69,9 +70,8 @@ public class W2GenBegServiceTest {
         int maxAlloedHd = 6;
         List<Integer> expectedListOfPositions = utility
                 .turnCsvTO_List("src/main/resources/static/FileSuccedHammingPattersTestL9.csv");
-        List<Integer> actualListOfPositions = w2GenomaBegService
+        List<Integer> actualListOfPositions = hammingDistanceService
                 .getPosHammingDistanceEqualOrMinorValue(pattern, gen, maxAlloedHd);
         Assertions.assertEquals(expectedListOfPositions, actualListOfPositions);
     }
-
 }
