@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-//TODO: Create controller versions that can allow consume of txt files
-//TODO: Create controller versions that can allow consume of json body
+
 
 @RestController
 @RequestMapping("/frequentWords")
@@ -22,8 +21,7 @@ public class FrequentWordsController {
     @PostMapping("/countPatters")
     public ResponseEntity<Integer> CountPatters(String genString, String pattern){
         Integer countPatters = frecuentWordsService.countPatters(genString, pattern);
-        ResponseEntity responseEntity = new ResponseEntity(countPatters, HttpStatus.OK);
-        return responseEntity;
+        return new ResponseEntity(countPatters, HttpStatus.OK);
     }
 
     @PostMapping("/frequentWordsFinder")

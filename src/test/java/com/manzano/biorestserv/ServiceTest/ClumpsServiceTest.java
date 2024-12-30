@@ -28,7 +28,7 @@ public class ClumpsServiceTest {
 
     }
 
-    @Test//TODO: Next method to solve: https://stepik.org/lesson/4/step/3?unit=8233
+    @Test
     public void clumpFindingSuccess(){
         String gen = "CGGACTCGACAGATGTGAAGAACGACAATGTGAAGACTCGACACGACAGAGTGAAGAGAAGAGGAAACATTGTAA";
         int kmerLenght = 5;

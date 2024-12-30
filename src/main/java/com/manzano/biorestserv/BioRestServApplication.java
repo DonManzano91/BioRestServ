@@ -3,9 +3,8 @@ package com.manzano.biorestserv;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-//TODO: 1. Ajusta logica para usar concepts de bioinfo en lugar de lo actual de "WxGenBeg"
-//TODO: Se resolvieron los errores de bean calling, arregla lo de arriba por que el interpreter no puede hacer cosas
-// el boot
+//TODO: Crea el objeto que sera la base de lo que
+//TODO: Modifica/crea controller para que FrequenWords.CountPatterns tome sus argumentos de un json, testGens
 
 @SpringBootApplication(scanBasePackages = "com.manzano.BioRestServ")
 public class BioRestServApplication {
