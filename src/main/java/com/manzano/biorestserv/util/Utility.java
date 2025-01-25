@@ -2,8 +2,6 @@ package com.manzano.biorestserv.util;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.io.FileReader;
@@ -15,8 +13,6 @@ import java.util.Map;
 
 @Component
 public class Utility {
-
-    private static final Logger log = LoggerFactory.getLogger(Utility.class);
 
     public Map<String, Integer> frequencyMap(String genString, Integer kmerLong){
         Map<String, Integer> frequenKmersMap = new HashMap<>();

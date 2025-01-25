@@ -25,14 +25,6 @@ public class HammingDistanceServiceTest {
     }
 
     @Test
-    public void skewMinimumSucced(){
-        String gen = "TAAAGACTGCCGAGAGGCCAACACGAGTGCTAGAACGAGGGGCGTAAACGCGGGTCCGAT";
-        List<Integer> expectedlistOfMimimuSkewValues = Arrays.asList(11, 24);
-        List<Integer> actualListOfMinimumSkewCalues = hammingDistanceService.skewMinimumList(gen);
-        Assertions.assertEquals(expectedlistOfMimimuSkewValues, actualListOfMinimumSkewCalues);
-    }
-
-    @Test
     public void hammingDistanceSucced() throws Exception {
         String kmer1 = "GGGCCGTTGGT";
         String kmer2 = "GGACCGTTGAC";

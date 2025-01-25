@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -19,7 +18,7 @@ public class HammingDistanceController {
 
     @PostMapping("/skerMinimumList")
     public ResponseEntity skewMinimumList(String gen){
-        List<Integer> skewMiniumList = hammingDistanceService.skewMinimumList(gen);
+        String skewMiniumList = hammingDistanceService.skewMinimumList(gen);
         return new ResponseEntity(skewMiniumList, HttpStatus.OK);
     }
 

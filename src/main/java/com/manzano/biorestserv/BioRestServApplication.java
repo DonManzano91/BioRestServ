@@ -3,8 +3,9 @@ package com.manzano.biorestserv;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-//TODO: Crea el objeto que sera la base de lo que
-//TODO: Modifica/crea controller para que FrequenWords.CountPatterns tome sus argumentos de un json, testGens
+//TODO Modifica FrequentWordsService y utility para que sean mas elegantes/usen streams
+//TODO Crea el objeto base para mapear el json que usara FrequentWords
+//TODO Modifica/crea controller para que FrequenWords.CountPatterns tome sus argumentos de un json, testGens
 
 @SpringBootApplication(scanBasePackages = "com.manzano.BioRestServ")
 public class BioRestServApplication {
